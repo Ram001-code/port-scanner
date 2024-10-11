@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port Scanner</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <div class="background">
+        <div class="container">
+            <h1>Port Scanner</h1>
+            <p class="subtitle">Enter a domain or IP to scan</p>
+            <form id="scan-form">
+                <input type="text" id="ip" name="ip" placeholder="Enter IP or Domain" required>
+                <input type="text" id="flags" name="flags" placeholder="Nmap Flags (optional)">
+                <button type="submit">Scan</button>
+            </form>
+            <div id="scan-progress">
+                <h2>Scan Progress</h2>
+                <pre id="progress-log"></pre>
+            </div>
+        </div>
+    </div>
+    <script>
+        const form = document.getElementById("scan-form");
+        const progressLog = document.getElementById("progress-log");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const ip = document.getElementById("ip").value;
+            const flags = document.getElementById("flags").value;
+            progressLog.textContent = "Scanning...\n";
+
+            try {
+                const response = await fetch("/scan", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ domain: ip, flags: flags }),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Error during scan");
+                }
+
+                const data = await response.json();
+
+                if (data.error) {
+                    progressLog.textContent = `Error: ${data.error}`;
+                } else {
+                    progressLog.textContent = data.output;
+                }
+            } catch (error) {
+                progressLog.textContent = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
