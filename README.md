@@ -8,7 +8,7 @@ The **Port Scanner** is a web-based tool that leverages **Nmap**, a powerful net
 
 ## 🌐 Working WEB-APP
 
-![Screenshot](screenshot.png)
+![Screenshot](./screenshot.png)
 You can view my **Port Scanner** Project Live at this [here](https://ports.ramksites.site/).
 
 ---
