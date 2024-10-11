@@ -101,3 +101,39 @@ button:hover {
     background: #008fcc;
     transition: 0.3s ease;
 }
+/* Disclaimer Section Styling */
+.disclaimer {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.disclaimer label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: white;
+}
+
+.disclaimer span {
+    line-height: 1.5;
+}
+
+.disclaimer input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.disclaimer a {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+.disclaimer a:hover {
+    text-decoration: underline;
+    color: #008fcc;
+}
